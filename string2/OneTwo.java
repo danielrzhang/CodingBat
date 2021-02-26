@@ -4,32 +4,33 @@ public class OneTwo {
 
 	public static String oneTwo(String str) {
 		String newString = "";
+		String letterToShift = "";
+		int counter = 0;
 
 		if (str.length() < 3) {
-			newString = str;
+			return "";
 		} else {
 			for (int i = 0; i < str.length(); i++) {
-				if (str.length() - i > 3) {
-					if (i % 3 != 0) {
-						newString += str.charAt(i);
-					}
-					if (i % 3 == 0 && i != 0){
-						newString += str.charAt(i - 3);
-					}
-				} else {
-					newString += str.substring(i);
+				if (counter >= str.length() / 3) {
 					break;
+				}
+				
+				if (i % 3 == 0) {
+					letterToShift = Character.toString(str.charAt(i));
+				}
+
+				if ((i + 1) % 3 == 0) {
+					newString += Character.toString(str.charAt(i)) + letterToShift;
+					counter++;
+				} else if (i % 3 != 0){
+					newString += Character.toString(str.charAt(i));
 				}
 			}
 		}
-
-		return newString;
+		return newString;	
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println(oneTwo("tcagdosy"));
-
+		System.out.println(oneTwo("1234567890"));
 	}
-
 }
